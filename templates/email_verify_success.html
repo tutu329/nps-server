@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册完成</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        h1 {
+          font-size: 24px;
+          font-weight: bold;
+          color: red;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .company {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .passwd {
+            line-height: 1.5;
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+       }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>注册完成</h1>
+        <p>恭喜 "{{ username }}"！您已成功完成邮箱验证，您的账户已经激活。您现在可以使用您的账户进行登录。</p>
+        <p>您账户密码是: </p>
+        <p class="passwd">"{{ password }}"</p>
+        <p>请务必保管妥善！</p>
+        <a href="https://powerai.cc">登录</a>
+        <p class="company">© {{ mycompany }}</p>
+    </div>
+</body>
+</html>

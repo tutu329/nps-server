@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatGPT后台数据监测</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        header {
+            background-color: #444;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            font-size: 2em;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            padding: 1em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #666;
+            text-align: left;
+            padding: 0.5em;
+        }
+
+        th {
+            background-color: #555;
+            color: white;
+        }
+
+        .logs {
+            height: 200px;
+            overflow-y: scroll;
+            background-color: #444;
+            padding: 1em;
+            border: 1px solid #666;
+            font-size: 10px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.5em;
+            }
+        }
+
+    </style>
+</head>
+<body onload="init()">
+    <header>
+        chatGPT后台数据监测
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>●</th>
+                    <th>●</th>
+                    <th>●</th>
+                    <th>●</th>
+                </tr>
+                <tr>
+                    <td id="chatgpt_queue_len_channel"></td>
+                    <td id="chatgpt_user_online"></td>
+                    <td id="var3"></td>
+                    <td id="var4"></td>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+                <!-- 使用JS动态填充表格数据 -->
+            </tbody>
+        </table>
+        <div class="logs" id="logs">
+            <!-- 使用JS动态添加实时日志 -->
+        </div>
+    </div>
+
+    <script type="module" src="{% static 'node_modules\axios\dist\axios.min.js' %}"></script>
+    <script>
+        var chatgpt_queue_len_channel
+        var chatgpt_user_online
+        var var3
+        var var4
+        var g_user_info_dict = {}
+
+        //========================================订阅数据初始化========================================
+        function init() {
+            chatgpt_queue_len_channel = document.getElementById("chatgpt_queue_len_channel")
+            chatgpt_user_online = document.getElementById("chatgpt_user_online")
+            var3 = document.getElementById("var3")
+            var4 = document.getElementById("var4")
+
+            chatgpt_queue_len_channel.innerText = "队列长度:0"
+            chatgpt_user_online.innerText = "在线用户:0"
+            var3.innerText = ""
+            var4.innerText = ""
+        }
+
+        // 获取实时数据和日志的函数
+        async function fetchData() {
+            try {
+                // 使用axios从Django后端获取数据
+                var sd = {}
+                const response = await axios.post('https://powerai.cc/pull_monitor_data', sd);
+                // const response = await axios.get('your-django-backend-url-for-data');
+                const rtn = response.data;
+                console.log("data is : ", rtn)
+
+
+                // const dataTable = document.getElementById('dataTable');
+                // dataTable.innerHTML = '';
+                // const row = document.createElement('tr');
+                if (rtn.success) {
+                    // ========================================已更新数据========================================
+                    channel = rtn.channel
+                    if (channel=="chatgpt_queue_len_channel") {
+                        chatgpt_queue_len_channel.innerText = "队列长度: "+rtn.data
+                    }
+                    if (channel=="chatgpt_user_online") {
+                        chatgpt_user_online.innerText = "在线用户: "+rtn.data
+                    }
+                    if (channel=="chatgpt_user_info") {
+                        let user_dict = JSON.parse(rtn.data)
+
+                        const logsElement = document.getElementById('logs');
+                        logsElement.innerHTML = '';
+                        const logItem = document.createElement('div');
+
+                        // 将这一条user信息行，存入g_user_info_dict中
+                        user_string = ""
+                        user_string += "id:\""+user_dict.user_id+"\" "
+                        user_string += "性别:\""+user_dict.gender+"\" "
+                        user_string += "昵称:\""+user_dict.user_nick+"\" "
+                        user_string += "级别:\""+user_dict.user_level+"\" "
+                        user_string += "VIP过期:\""+user_dict.vip_expired+"\" "
+                        logItem.innerText = user_string;
+                        // console.log("user info is : ", user_dict)
+
+                        // 添加一条信息
+                        g_user_info_dict[user_dict.user_id] = logItem
+
+                        // 显示g_user_info_dict中所有的信息行
+                        for (let key in g_user_info_dict) {
+                            if (g_user_info_dict.hasOwnProperty(key)) {
+                                logsElement.appendChild(g_user_info_dict[key]); 
+                            }
+                        }
+
+
+                        // chatgpt_user_online.innerText = "在线用户: "+rtn.data
+                    }
+                    if (channel.includes("chatgpt_world_")) {
+                        let action_dict = JSON.parse(rtn.data)
+
+                        const logsElement = document.getElementById('logs');
+                        logsElement.innerHTML = '';
+                        const logItem = document.createElement('div');
+
+                        // 将这一条user信息行，存入g_user_info_dict中
+                        user_string = `${action_dict.name} ${action_dict.action} to ${action_dict.to}: ${action_dict.content}`
+                        logItem.innerText = user_string;
+                        // console.log("user info is : ", user_dict)
+
+                        // 添加一条信息
+                        g_user_info_dict[action_dict.name] = logItem
+
+                        // 显示g_user_info_dict中所有的信息行
+                        for (let key in g_user_info_dict) {
+                            if (g_user_info_dict.hasOwnProperty(key)) {
+                                logsElement.appendChild(g_user_info_dict[key]);
+                            }
+                        }
+
+
+                        // chatgpt_user_online.innerText = "在线用户: "+rtn.data
+                    }
+                }
+                else {
+                }
+
+                // 使用axios从Django后端获取实时日志
+                // const logsResponse = await axios.post('https://powerai.cc/pull_monitor_data', sd);
+                // // const logsResponse = await axios.get('your-django-backend-url-for-logs');
+                // const logsData = logsResponse.data;
+                //
+                // // 动态添加实时日志
+                // const logsElement = document.getElementById('logs');
+                // logsElement.innerHTML = '';
+                // for (let log of logsData) {
+                //     const logItem = document.createElement('div');
+                //     logItem.innerText = log;
+                //     logsElement.appendChild(logItem);
+                // }
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // 调用 fetchData 函数来获取实时数据和日志
+        fetchData();
+
+        // 你可以设置一个定时器以定期获取数据和日志
+        setInterval(fetchData, 500); // 每5秒钟更新一次数据和日志
+    </script>
+</body>
+</html>
+
+{#写一个典型的在线数据监测的html5页面，标题是"chatGPT后台数据监测"，页面上半部分有6个*5行的实时数据列表，下半部分是一个可滚动的实时日志；#}
+{#页面的配色、排版风格要非常专业；实时数据和日志均通过js调用django后台得到，django实现不用管。#}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+{#    没有这行，下面读取css的static变量就会报错#}
+    {% load static %}
+
+    <title>与chatGPT聊天</title>
+    <style type="text/css"> img { width: 45%; height: auto; } </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/code_style_from_pygments.css' %}">
+    <script>
+        function preventDef(event){
+            event=event||window.event;
+            if(event.preventDefault){
+                return event.preventDefault;
+            }else{
+                return event.returnValue=false;
+            }
+        }
+        window.onload=function(){
+            console.log("user onload().")
+            var form=document.getElementsByTagName('form')[0];　　　　　　//获取到form元素
+            document.getElementById("main_text").scrollTop = document.getElementById("main_text").scrollHeight    //文本滚动到底部
+            var txt=form.elements['txt'];　　　　　　　　　　　　　　　　　　　　//获取到name属性为txt的表单元素
+            var sub=form.elements['sub'];　　　　　　　　　　　　　　　　　　　　//获取到name属性为sub的表单元素
+            form.onsubmit=function(event){　　　　　　　　　　　　　　　　　　//创建一个提交事件，因为submit是form来提交事件的，所以我们要禁止也需要通过form来禁止
+                console.log("user onsubmit().")
+                event=event || window.event;
+                preventDef(event);　　　　　　　　　　　　　　　　　　　　　　//禁止掉默认提交行为
+                sub.disabled=true;　　　　//第一种就是在用户提交完之后，将按钮禁用不再让用户提交，等待提交完毕之后再释放按钮
+                {#setTimeout(function(){　　　　　　　　　　　　　　　　　　　　//模拟5秒钟后再提交#}
+                {#    form.submit()},1200000);#}
+            }
+        }
+    </script>
+    <!--    下面meta用于让手机浏览器和电脑浏览器字体看起来差不多大-->
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-touch-fullscreen" content="no"/>
+</head>
+<body>
+    <div>
+        <div id="main_text" style="width:100%;height:70%;left:5px;right:5px;position:fixed;box-sizing:border-box;word-wrap:break-word;overflow-x:auto;overflow-y:auto;">
+            {#django的if语句的==前后必须有空格！！！#}
+            {#有了safe过滤器才能直接显示传参过来的html标签#}
+            {% for i in s_chat_html_list %}
+                {{ i }}
+            {% endfor %}
+        </div>
+    </div>
+    <div style="bottom:2%; position:fixed;">
+        <form action="" method="post" style="margin:0;padding:0;z-index:999">
+            <div>
+                <textarea onkeydown="if(event.keyCode==13){document.forms[0].submit();document.forms[0].elements['sub'].disabled=true;document.forms[0].elements['txt'].disabled=true}" style="font-size:16px;width:100%;height:80px; white-space:pre-wrap; word-wrap:break-word;box-sizing:border-box;" name="input_text" id="txt" autofocus="autofocus" >{{input_text_value}}</textarea>
+{#                <input style="font-size:16px;width:100%;height:120px; white-space:pre-wrap; word-wrap:break-word;box-sizing:border-box;" name="input_text" id="txt" type="text" autofocus="autofocus" value={{input_text_value}} />#}
+                <input style="font-size:16px" type="submit" value="提交" id="sub" />
+                <input type="button" onclick="clearInput()" value="清空" style="font-size:16px"/>
+                <input type="checkbox" id="checkbox1" {% if value_has_mem %}checked{% endif %} name="name_has_mem"/><label for="checkbox1" style="font-size:16px">聊天记忆</label>
+                <script>
+                    function clearInput() {
+                        document.getElementById('txt').value = '';
+                        document.getElementById('txt').focus();
+                    }
+                </script>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

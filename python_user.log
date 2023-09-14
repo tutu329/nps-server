@@ -1,0 +1,101 @@
+2023-03-10 08:56:30,384 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 08:56:30,385 - DEBUG - hi
+2023-03-10 09:15:48,627 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:15:48,628 - DEBUG - dict x is: 
+2023-03-10 09:17:30,394 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:17:30,394 - DEBUG - dict x is: 
+2023-03-10 09:18:05,637 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:18:05,637 - DEBUG - print_debug dict x is: 
+2023-03-10 09:22:09,513 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:22:09,513 - DEBUG - print_debug dict x is: 
+2023-03-10 09:22:28,512 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:22:28,512 - DEBUG - print_debug dict x is: 
+2023-03-10 09:22:35,054 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:22:35,054 - DEBUG - print_debug dict x is: 
+2023-03-10 09:23:18,588 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:23:18,588 - DEBUG - print_debug dict x is: 
+2023-03-10 09:27:13,850 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:27:13,850 - DEBUG - print_debug dict x is: 
+2023-03-10 09:27:13,850 - INFO - logging dict x is: 
+2023-03-10 09:29:01,461 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:29:01,480 - INFO - logging dict x is: 
+2023-03-10 09:30:22,878 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:30:22,879 - DEBUG - print_debug dict x is: 
+2023-03-10 09:30:22,879 - INFO - logging dict x is: 
+2023-03-10 09:32:36,241 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:32:36,244 - INFO - logging dict x is: 
+2023-03-10 09:33:51,382 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:33:51,384 - INFO - logging dict x is: 
+2023-03-10 09:34:09,924 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:34:09,927 - INFO - logging dict x is: 
+2023-03-10 09:34:25,623 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:35:31,334 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:35:49,881 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:36:53,937 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:37:05,383 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:38:04,438 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:38:57,973 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:39:42,824 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:41:11,724 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:41:11,724 - DEBUG - hi
+2023-03-10 09:41:38,970 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:41:38,970 - DEBUG - hi
+2023-03-10 09:42:13,784 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:42:13,784 - DEBUG - hi
+2023-03-10 09:43:21,884 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:43:21,884 - DEBUG - hi
+2023-03-10 09:45:59,310 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:45:59,310 - DEBUG - hi
+2023-03-10 09:46:06,180 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:46:06,180 - DEBUG - hi
+2023-03-10 09:48:22,135 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:48:22,136 - DEBUG - hi
+2023-03-10 09:48:22,136 - DEBUG - {'x': 1, 'y': 2}
+2023-03-10 09:50:20,450 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:50:20,451 - DEBUG - hi
+2023-03-10 09:50:20,451 - DEBUG - {'x': 1, 'y': 2}
+2023-03-10 09:50:39,324 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:50:39,324 - DEBUG - hi
+2023-03-10 09:51:36,974 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:51:36,974 - DEBUG - hi
+2023-03-10 09:51:41,881 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:51:41,881 - DEBUG - hi
+2023-03-10 09:51:51,507 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:51:51,508 - DEBUG - hi
+2023-03-10 09:52:02,569 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:52:02,569 - DEBUG - hi
+2023-03-10 09:52:15,215 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:52:15,215 - DEBUG - hi
+2023-03-10 09:52:21,637 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:52:21,637 - DEBUG - hi
+2023-03-10 09:52:47,247 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:52:47,248 - DEBUG - hi
+2023-03-10 09:53:03,470 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:53:03,470 - DEBUG - hi
+2023-03-10 09:53:25,688 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:53:25,689 - DEBUG - hi
+2023-03-10 09:53:50,716 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:53:50,716 - DEBUG - hi
+2023-03-10 09:53:50,716 - DEBUG - {'x': 1, 'y': 2}
+2023-03-10 09:53:56,065 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:53:56,065 - DEBUG - hi
+2023-03-10 09:53:56,065 - DEBUG - {'x': 1, 'y': 2}
+2023-03-10 09:53:59,623 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 09:53:59,623 - DEBUG - hi
+2023-03-10 10:02:38,685 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 10:02:38,686 - DEBUG - dict x is : {'x': 1, 'y': 2}
+2023-03-10 10:03:03,999 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-10 10:03:03,999 - DEBUG - dict x is : {'x': 1, 'y': 2}
+2023-03-10 10:03:03,999 - DEBUG - dict x is : 
+2023-03-14 08:09:47,735 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-14 08:09:47,735 - DEBUG - hi
+2023-03-20 11:40:04,541 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-20 11:40:04,541 - DEBUG - add_user_id() entered, user_data_lock acquired.
+2023-03-20 11:40:04,542 - DEBUG - _add_all_roles() entered.
+2023-03-20 11:40:04,542 - DEBUG - _add_all_roles() exited.
+2023-03-20 11:40:04,542 - DEBUG - add_user_id() exited, user_data_lock released.
+2023-03-20 11:40:41,853 - DEBUG - 'Darwin' user 'tutu' invokes '/Volumes/public/mbp15/mbp15_prog/server/nps/Python_User_Logger.py'.
+2023-03-20 11:40:41,853 - DEBUG - add_user_id() entered, user_data_lock acquired.
+2023-03-20 11:40:41,853 - DEBUG - _add_all_roles() entered.
+2023-03-20 11:40:41,854 - DEBUG - _add_all_roles() exited.
+2023-03-20 11:40:41,854 - DEBUG - add_user_id() exited, user_data_lock released.
