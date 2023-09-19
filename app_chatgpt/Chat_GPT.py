@@ -2000,7 +2000,8 @@ class Chat_GPT():
 
     s_model="gpt-3.5-turbo-0301",
     s_gpt4_model="gpt-4-0314",
-    s_api_key = "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"   # openai账号：采用微软账号(jack.seaver@outlook.com)，plus 20美元/月、token费用另算。
+    s_api_key = "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"   # openai账号：采用微软账号(jack.seaver@outlook.com)，plus 20美元/月、token费用另算。
+    # s_api_key = "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"   # openai账号：采用微软账号(jack.seaver@outlook.com)，plus 20美元/月、token费用另算。
     # ======================调用 chatgpt api======================
 
     # 一个session对应一个stream_generator
@@ -2865,8 +2866,8 @@ def main():
     gpt = Chat_GPT()
     # gpt = Chat_GPT(in_use_gpu=True)
     print("model: ", gpt.model)
-    rtn = gpt.ask_gpt("你是谁？")
-    print("LLM: ", rtn)
+    # rtn = gpt.ask_gpt("你是谁？")
+    # print("LLM: ", rtn)
 
 if __name__ == "__main__" :
-    main()
+    main1()
