@@ -2150,6 +2150,7 @@ class Sys_Base(Container_Base):
         pass
 
     def _optimize(self):
+        # print(f'======================_optimize()========================')
         # pyomo模型输出
         # self.model.pprint()
         if self.print_model == True:
@@ -2159,14 +2160,18 @@ class Sys_Base(Container_Base):
         if is_mac():
             # t_solver = SolverFactory('gurobi', server_io="python")
             t_solver = SolverFactory('gurobi')
+            # print(f'======================gurobi========================')
+
         else:
             t_solver = SolverFactory('cplex')
+            # print(f'======================cplex========================')
         # t_solver = SolverFactory('glpk')
         # t_solver.options['max_iter'] = 1000   # glpk用不了这个参数
         self.solver_result = t_solver.solve(
             self.model,
             tee=self.tee        #输出中间结果
         )
+        # print(f'======================_optimize() finished.========================')
 
         # gdp可以直接调用glpk，下面2行并不需要
         # TransformationFactory('gdp.bigm').apply_to(model)

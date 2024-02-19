@@ -14,9 +14,9 @@ class NPS_Case():
         if in_called==False:
             return
 
-        t_simu_hours = 24
+        # t_simu_hours = 24
         # t_simu_hours = 720
-        # t_simu_hours = 24*365
+        t_simu_hours = 24*365
         # t_simu_hours = 24*365*2
         # t_simu_hours = 24*365*10
         # t_simu_hours = 24*365*25
@@ -41,9 +41,16 @@ class NPS_Case():
         # t_sys.print_objfunc = True
 
         # ============负荷============
+        file_path = 'D:/server/server-xls/11.xls'
+        # file_path = 'D:/server/server-xls/data_analysis_yn.xlsx'
         print("xls的搜寻路径是: {}/xls/".format(os.getcwd()))
-        t_file = XLS_File('xls/data_analysis_yn.xlsx', in_cols=[0,1,2])
+        t_file = XLS_File(file_path, in_cols=[0,1,2], in_row_num=8761)
+        print(f'{t_file.get_list("负荷")}')
+        print(f'{t_file.get_list("光伏")}')
+        print(f'{t_file.get_list("风电")}')
+        # t_file = XLS_File('xls/data_analysis_yn.xlsx', in_cols=[0,1,2])
         t_load1 = Load(in_sys=t_sys, in_name_id="load", in_p_nom=3000) # kW
+        print(f'==============Load()================')
         t_load1.set_one_year_p(t_file.get_list("负荷"))   #负荷数据的正负一定要搞清楚，对结果影响非常大
 
         # ============柴发============
@@ -130,12 +137,12 @@ class NPS_Case():
             return
 
         # t_simu_hours = 2
-        t_simu_hours = 24
+        # t_simu_hours = 24
         # t_simu_hours = 720
         # t_simu_hours = 24*365
         # t_simu_hours = 24*365*2
         # t_simu_hours = 24*365*10
-        # t_simu_hours = 24*365*25
+        t_simu_hours = 24*365*25
 
         t_simu_years = t_simu_hours//8760
 
@@ -157,7 +164,10 @@ class NPS_Case():
         # t_sys.print_objfunc = True
 
         # ============负荷============
-        t_file = XLS_File(Global.get("path")+'static/xls/data_analysis_yn.xlsx', in_cols=[0,1,2], in_row_num=8761)
+        file_path = 'D:/server/server-xls/data_analysis_yn.xlsx'
+        # file_path = Global.get("path")+'static/xls/data_analysis_yn.xlsx'
+        print(f'xlsx path: {file_path}')
+        t_file = XLS_File(file_path, in_cols=[0,1,2], in_row_num=8761)
         t_load1 = Load(in_sys=t_sys, in_name_id="load", in_p_nom=3000) # kW
         t_load1.set_one_year_p(t_file.get_list("负荷"))   #负荷数据的正负一定要搞清楚，对结果影响非常大
 
@@ -234,6 +244,7 @@ class NPS_Case():
             in_marginal_cost=0)                   # user_finance, 考虑的注入电量成本，计算光伏、储能等项目的财务成本时，用户向电网购电成本应为正值
         t_slack_node2.e_output = True
 
+        # print(f'======================do_optimize()========================')
         t_sys.do_optimize()
 
     def case2(self, in_called, in_path=''):
@@ -242,12 +253,12 @@ class NPS_Case():
             return
 
         # t_simu_hours = 1
-        t_simu_hours = 24
+        # t_simu_hours = 24
         # t_simu_hours = 720
         # t_simu_hours = 24*365
         # t_simu_hours = 24*365*2
         # t_simu_hours = 24*365*10
-        # t_simu_hours = 24*365*25
+        t_simu_hours = 24*365*25
 
         t_simu_years = t_simu_hours//8760
 
@@ -272,7 +283,9 @@ class NPS_Case():
         # t_sys.print_objfunc = True
 
         # ============负荷============
-        t_file = XLS_File('static/xls/data_analysis_multi.xlsx', in_cols=[0,1,2])
+        file_path = 'D:/server/server-xls/data_analysis_multi.xlsx'
+        t_file = XLS_File(file_path, in_cols=[0,1,2], in_row_num=8761)
+        # t_file = XLS_File('static/xls/data_analysis_multi.xlsx', in_cols=[0,1,2], in_row_num=8761)
         t_load1 = Load(in_sys=t_sys, in_name_id="elec load", in_p_nom=1000) # kW
         t_load1.set_one_year_p(t_file.get_list("负荷"))   #负荷数据的正负一定要搞清楚，对结果影响非常大
 
@@ -467,7 +480,7 @@ def main():
     # Call_Class_Funcs(NPS_Case, in_case="")  # 显示所有案例的说明文字
     # Call_Class_Funcs(NPS_Case, in_case="case2")
     nps = NPS_Case()
-    nps.case11(in_called=True, in_path='')
+    nps.case2(in_called=True, in_path='')
 
 if __name__ == "__main__" :
     main()

@@ -31,11 +31,16 @@ class NPS_Case():
             in_analysis_day_list=[0,90,180,270]
             # in_analysis_day_list=0
         )
+        t_sys.Add_Bus()
 
         # 直接读取8760h标幺值数据==========
-        t_file = XLS_File('xls/data_analysis.xlsx', in_cols=[0,1,2,3])
+        file_path = 'D:/server/server-xls/11.xls'
+
+        t_file = XLS_File(file_path, in_cols=[0,1,2,3], in_row_num=8761)
+        # t_file = XLS_File('xls/data_analysis.xlsx', in_cols=[0,1,2,3])
 
         t_load1 = Load(in_sys=t_sys, in_name_id="load", in_p_nom=15*10**8)
+        print(f'==============Load()================')
         t_load1.set_one_year_p(t_file.get_list("负荷"))   #负荷数据的正负一定要搞清楚，对结果影响非常大
         # t_load1.load_nom = 140000*0.9  # kW 最大允许负荷（决定了储能的放电功率空间），#泽雅+瞿溪供区
         # print(t_load1.one_year_p_list)
@@ -1213,7 +1218,11 @@ def create_case6_sys():
         # t_sys.print_objfunc = True
 
         # 直接读取8760h标幺值数据==========
-        t_file = XLS_File('static/xls/shaoxing-35kV.xls', in_cols=[0, 1], in_row_num=8761)
+        t_file = XLS_File('D:/server/server-xls/shaoxing-35kV.xls', in_cols=[0, 1], in_row_num=8761)
+        print(f'{t_file.get_list("电负荷")}')
+        print(f'{t_file.get_list("光伏")}')
+
+        # t_file = XLS_File('static/xls/shaoxing-35kV.xls', in_cols=[0, 1], in_row_num=8761)
 
         # t_load1 = Load(in_sys=t_sys, in_name_id="load", in_p_nom=2033) # kW
         # t_load1.set_one_year_p(t_file.get_list("欣美"))   #负荷数据的正负一定要搞清楚，对结果影响非常大
@@ -1409,4 +1418,7 @@ if __name__ == "__main__" :
     # main_test()
     # main_t()
     # main_shaoxing_35kV()
-    main()
+    # main()
+    # Call_Class_Funcs(NPS_Case, in_case="case1")
+    nps = NPS_Case()
+    nps.case1(in_called=True, in_path='')
