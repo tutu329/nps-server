@@ -455,8 +455,10 @@ class NPS_Case():
         elec_up_max = 0.2
         elec_down_max = 0.1
 
-        max_load_p = 800 * 10**3           # kW
-        max_load_kWh = max_load_p * 5000    # kWh
+        # (尚未核实)11.2标方氢气为1公斤。所以电解水制氢1公斤耗电约56度左右。
+        # max_load_p = 20000*56               # kW, 项目配置最大制氢出力为22万Nm3/h
+        max_load_p = 800 * 10**3          # kW
+        max_load_kWh = max_load_p * 6400    # kWh, 年负荷电量
 
         print("--------------------案例\"{}\"为冷热电氢系统测试分析--------------------".format(Get_Current_Func_Name()))
         if in_called==False:
@@ -465,9 +467,9 @@ class NPS_Case():
         # t_simu_hours = 1
         # t_simu_hours = 24
         # t_simu_hours = 720
-        t_simu_hours = 24*365
+        # t_simu_hours = 24*365
         # t_simu_hours = 24*365*2
-        # t_simu_hours = 24*365*10
+        t_simu_hours = 24*365*10
         # t_simu_hours = 24*365*25
 
         t_simu_years = t_simu_hours//8760
