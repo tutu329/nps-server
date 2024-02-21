@@ -447,13 +447,17 @@ class NPS_Case():
 
     def case3(self, in_called, in_path=''):
         name_id = '阿拉善国家级能源基地配套新能源首期3000MW风光制氢项目'
-        pv_nom = 2000 * 10**3 # kW
+        pv_nom = 2000 * 10**3   # kW
         wind_nom = 1000 * 10**3 # kW
-        bes_W_price = 0.12 # 元/W
+        bes_W_price = 0.12      # 元/W
         bes_Wh_price = 1.38*0.6 # 元/Wh
+        pv_price = 3.5          # 元/W
+        wind_price = 3.5        # 元/W
 
         elec_up_max = 0.2
         elec_down_max = 0.1
+        # elec_up_max = 1.0
+        # elec_down_max = 1.0
 
         # (尚未核实)11.2标方氢气为1公斤。所以电解水制氢1公斤耗电约56度左右。
         # max_load_p = 20000*56               # kW, 项目配置最大制氢出力为22万Nm3/h
@@ -470,6 +474,10 @@ class NPS_Case():
         # t_simu_hours = 24*365
         # t_simu_hours = 24*365*2
         t_simu_hours = 24*365*10
+
+        # 不收敛
+        # t_simu_hours = 24*365*15
+        # t_simu_hours = 24*365*20
         # t_simu_hours = 24*365*25
 
         t_simu_years = t_simu_hours//8760
@@ -517,14 +525,17 @@ class NPS_Case():
         # t_diesel1.marginal_cost["value"]=0.242  # 美元/kWh
 
         # ============光伏============
-        t_pv1 = NE_Plant(in_sys=t_sys, in_name_id="pv", in_p_nom=pv_nom, in_p_nom_extendable=False)   # kW
+        t_pv1 = NE_Plant(in_sys=t_sys, in_name_id="pv", in_p_nom=0, in_p_nom_extendable=True)   # kW
+        # t_pv1 = NE_Plant(in_sys=t_sys, in_name_id="pv", in_p_nom=pv_nom, in_p_nom_extendable=False)   # kW
         # t_pv1.marginal_cost["value"]=0.0
-        # t_pv1.capital_cost["value"]=4.0     # 元/W
+        t_pv1.capital_cost["value"]=pv_price         # 元/W
         t_pv1.set_one_year_p(t_file.get_list("光伏"), in_is_pu=True)   #光伏数据，实际只需要特性
 
         # ============风电============
-        t_wind1 = NE_Plant(in_sys=t_sys, in_name_id="wind", in_p_nom=wind_nom, in_p_nom_extendable=False)    # kW
+        t_wind1 = NE_Plant(in_sys=t_sys, in_name_id="wind", in_p_nom=0, in_p_nom_extendable=True)    # kW
+        # t_wind1 = NE_Plant(in_sys=t_sys, in_name_id="wind", in_p_nom=wind_nom, in_p_nom_extendable=False)    # kW
         # t_wind1.marginal_cost["value"]=0.0
+        t_wind1.capital_cost["value"]=wind_price       # 元/W
         # t_wind1.capital_cost["value"]=6.367      # IEA 2050 中国造价
         t_wind1.set_one_year_p(t_file.get_list("风电"), in_is_pu=True)   #光伏数据，实际只需要特性
 
@@ -565,7 +576,7 @@ class NPS_Case():
         t_slack_node1 = Absorption_Slack_Node(
             t_sys,
             in_name_id="sl_absorp",
-            in_p_max=max_load_p*100,    # kW
+            in_p_max=max_load_p*100,    # kW，放大100倍，意思是没有限制
             in_p_nom_extendable=False,
             in_e_max=max_load_kWh*elec_up_max * t_simu_years,         # 设置了用电量20%的上送限额
             # in_e_max=max_load_kWh * 0.2 * t_simu_years,         # 设置了用电量20%的上送限额
@@ -578,13 +589,13 @@ class NPS_Case():
         t_slack_node2 = Injection_Slack_Node(
             t_sys,
             in_name_id="sl_inject",
-            in_p_max=max_load_p*100,    # kW
+            in_p_max=max_load_p*100,    # kW，放大100倍，意思是没有限制
             in_p_nom_extendable=False,
             in_e_max=max_load_kWh*elec_down_max * t_simu_years,         # 设置了用电量10%的下送限额
             # in_e_max=max_load_kWh * 0.1 * t_simu_years,         # 设置了用电量10%的下送限额
             # in_e_max=0*8760 * t_simu_years,
             # in_marginal_cost=0)                     # government, 考虑的注入电量影子成本，输配电价暂考虑0.2元/kWh
-            in_marginal_cost=0)                   # user_finance, 考虑的注入电量成本，计算光伏、储能等项目的财务成本时，用户向电网购电成本应为正值
+            in_marginal_cost=0.2)                   # user_finance, 考虑的注入电量成本，计算光伏、储能等项目的财务成本时，用户向电网购电成本应为正值
         t_slack_node2.e_output = True
 
         # 110kV变电站向上级电网购电的结算价格（是省局每年调整的一个内部价格，各县不一样且存在劫富济贫，萧山局2020年是0.52158元/kWh）（2021.6.30来自萧山局朱主任）
