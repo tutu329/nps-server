@@ -459,7 +459,6 @@ class NPS_Case():
         # elec_up_max = 1.0
         # elec_down_max = 1.0
 
-
         # (尚未核实)11.2标方氢气为1公斤。所以电解水制氢1公斤耗电约56度左右。
         # max_load_p = 20000*56               # kW, 项目配置最大制氢出力为22万Nm3/h
         max_load_p = 800 * 10**3          # kW
