@@ -471,9 +471,9 @@ class NPS_Case():
         # t_simu_hours = 1
         # t_simu_hours = 24
         # t_simu_hours = 720
-        # t_simu_hours = 24*365
+        t_simu_hours = 24*365
         # t_simu_hours = 24*365*2
-        t_simu_hours = 24*365*10
+        # t_simu_hours = 24*365*10
 
         # 不收敛
         # t_simu_hours = 24*365*15
