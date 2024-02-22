@@ -2000,7 +2000,8 @@ class Chat_GPT():
 
     s_model="gpt-3.5-turbo-0301",
     s_gpt4_model="gpt-4-0314",
-    s_api_key = "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"   # openai账号：采用微软账号(jack.seaver@outlook.com)，plus 20美元/月、token费用另算。
+    s_api_key = "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"   # openai账号：采用微软账号(jack.seaver@outlook.com)，plus 20美元/月、token费用另算。
+    # s_api_key = "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"   # openai账号：采用微软账号(jack.seaver@outlook.com)，plus 20美元/月、token费用另算。
     # s_api_key = "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"   # openai账号：采用微软账号(jack.seaver@outlook.com)，plus 20美元/月、token费用另算。
     # ======================调用 chatgpt api======================
 
@@ -2855,6 +2856,7 @@ def main5():
     #   }
     # }
 def main1():
+    print('api key is: ', Chat_GPT().s_api_key)
     arg = sys.argv
     print(arg)
     if len(arg)>=2:
