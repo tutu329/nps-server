@@ -657,20 +657,35 @@ def api_server_test():
         import requests
         from requests.exceptions import RequestException
         req = {
-            'message' : 'message',
-            'temperature' : 'temperature',
-            'top_p' : 'top_p',
-            'top_k' : 'top_k',
-            'repetition_penalty' : 'repetition_penalty',
-            'max_new_tokens' : 'max_new_tokens',
-            'stop' : 'stop',
+            'rate':0.08,
+
+            'pv_nom0':0,
+            'pv_cost':3.5,
+            'pv_optimize':True,
+
+            'wind_nom0':0,
+            'wind_cost':3.5,
+            'wind_optimize':True,
+
+            'storage_w_cost':0.12,
+            'storage_wh_cost':1.38*0.6,
+
+            'up_flow_max_proportion':0.2,
+            'down_flow_max_proportion':0.1,
+
+            'load_max': 800*1000,
+            'load_electricity': 800*1000*6400,
+
+            'simu_years': 10,
         }
-        response = requests.post(url='http://116.62.63.204:8002/cal/', json=req)
+        response = requests.post(url='http://localhost:8002/cal/', json=req)
+        # response = requests.post(url='http://116.62.63.204:8002/cal/', json=req)
         response.raise_for_status() # 如果不在200-400，发出一个异常
         dict = response.json()
+        print(f'api_server_test dict is : {dict}')
     except RequestException as e:
         print(f'请求API服务器出错：{e}')
 
 if __name__ == "__main__" :
-    main()
-    # api_server_test()
+    # main()
+    api_server_test()
