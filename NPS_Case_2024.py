@@ -651,6 +651,7 @@ def main():
     nps.case3(in_called=True, in_path='')
 
 def api_server_test():
+    # 可以在jupyter中测试
     try:
         import requests
         from requests.exceptions import RequestException
@@ -670,5 +671,5 @@ def api_server_test():
         print(f'请求API服务器出错：{e}')
 
 if __name__ == "__main__" :
-    # main()
-    api_server_test()
+    main()
+    # api_server_test()
