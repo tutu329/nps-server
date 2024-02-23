@@ -504,7 +504,8 @@ class NPS_Case():
         # t_sys.print_objfunc = True
 
         # ============负荷============
-        file_path = 'D:/server/server-xls/data_analysis_multi.xlsx'
+        file_path = 'c:/server/server-xls/data_analysis_multi.xlsx'
+        # file_path = 'D:/server/server-xls/data_analysis_multi.xlsx'
         t_file = XLS_File(file_path, in_cols=[0,1,2], in_row_num=8761)
         # t_file = XLS_File('static/xls/data_analysis_multi.xlsx', in_cols=[0,1,2], in_row_num=8761)
         t_load1 = Load(in_sys=t_sys, in_name_id="elec load", in_p_nom=max_load_p) # kW
