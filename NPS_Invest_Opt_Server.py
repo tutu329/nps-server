@@ -25,6 +25,7 @@ def start_server(http_address: str, port: int):
             'status':'normal',
             'cancel':False,
             'complete':True,
+            'send':arg_dict,
         }
         return response
 

@@ -650,5 +650,25 @@ def main():
     nps = NPS_Case()
     nps.case3(in_called=True, in_path='')
 
+def api_server_test():
+    try:
+        import requests
+        from requests.exceptions import RequestException
+        req = {
+            'message' : 'message',
+            'temperature' : 'temperature',
+            'top_p' : 'top_p',
+            'top_k' : 'top_k',
+            'repetition_penalty' : 'repetition_penalty',
+            'max_new_tokens' : 'max_new_tokens',
+            'stop' : 'stop',
+        }
+        response = requests.post(url='http://116.62.63.204:8002/cal/', json=req)
+        response.raise_for_status() # 如果不在200-400，发出一个异常
+        dict = response.json()
+    except RequestException as e:
+        print(f'请求API服务器出错：{e}')
+
 if __name__ == "__main__" :
-    main()
+    # main()
+    api_server_test()
