@@ -2797,7 +2797,7 @@ class Sys(Sys_Base):
         return rtn_table
 
     # ===================生成计算报告、对应的docx文档===================
-    def _create_report(self, in_tables=0, in_url='http://localhost:18001'):
+    def _create_report(self, in_tables=0, in_url='http://116.62.63.204:18001'):
         t_fnames = self._pic_file_name_list     # 所有输出的图片名称
         t_docx_filename = "投资优化"
         t_content = [

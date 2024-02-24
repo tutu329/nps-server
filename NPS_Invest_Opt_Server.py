@@ -46,7 +46,7 @@ def calulate(in_paras):
     now_string = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     t_sys = Sys(
         in_name_id='nps_project_0',
-        in_remote_user_open_id=f'{remote_user_id}_{now_string}',  # 输出的word文件名后缀，如：投资优化_openid(tmpusr_2024-02-24-13-09-58).docx中的'tmpusr_2024-02-24-13-09-58'
+        in_remote_user_open_id=f'{remote_user_id}-{now_string}',  # 输出的word文件名后缀，如：投资优化_openid(tmpusr_2024-02-24-13-09-58).docx中的'tmpusr_2024-02-24-13-09-58'
         in_dpi=64,
         in_share_y=True,
         in_simu_hours=t_simu_hours,

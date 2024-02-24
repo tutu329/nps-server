@@ -17,9 +17,9 @@ Global.init()
 
 class Word():
     def __init__(self, in_filename, in_id="", in_domain_name=""):
-        self.docx_filename = Global.get("path") + "static/docx/" + in_filename + "_openid(" + in_id + ").docx"
+        self.docx_filename = Global.get("path") + "static/docx/" + in_filename + "-openid(" + in_id + ").docx"
         self.pic_filepath = Global.get("path") + "static/pic/"
-        self._docx_full_url = in_domain_name + "/static/docx/" + in_filename + "_openid(" + in_id + ").docx"
+        self._docx_full_url = in_domain_name + "/static/docx/" + in_filename + "-openid(" + in_id + ").docx"
         self._doc = Document()
         self._id = in_id
         self._temp_files = []
