@@ -67,14 +67,14 @@ def calulate(in_paras):
 
 
     # ============光伏============
-    t_pv1 = NE_Plant(in_sys=t_sys, in_name_id="pv", in_p_nom=0, in_p_nom_extendable=pv_extent)  # kW
+    t_pv1 = NE_Plant(in_sys=t_sys, in_name_id="pv", in_p_nom=pv_nom, in_p_nom_extendable=pv_extent)  # kW
     # t_pv1 = NE_Plant(in_sys=t_sys, in_name_id="pv", in_p_nom=pv_nom, in_p_nom_extendable=False)   # kW
     # t_pv1.marginal_cost["value"]=0.0
     t_pv1.capital_cost["value"] = pv_price  # 元/W
     t_pv1.set_one_year_p(t_file.get_list("光伏"), in_is_pu=True)  # 光伏数据，实际只需要特性
 
     # ============风电============
-    t_wind1 = NE_Plant(in_sys=t_sys, in_name_id="wind", in_p_nom=0, in_p_nom_extendable=wind_extent)  # kW
+    t_wind1 = NE_Plant(in_sys=t_sys, in_name_id="wind", in_p_nom=wind_nom, in_p_nom_extendable=wind_extent)  # kW
     # t_wind1 = NE_Plant(in_sys=t_sys, in_name_id="wind", in_p_nom=wind_nom, in_p_nom_extendable=False)    # kW
     # t_wind1.marginal_cost["value"]=0.0
     t_wind1.capital_cost["value"] = wind_price  # 元/W
@@ -149,6 +149,8 @@ def calulate(in_paras):
 
     t_sys.do_optimize()
 
+    return t_sys._get_table_for_report_output()
+
 def start_server(http_address: str, port: int):
     app = FastAPI()
     app.add_middleware(CORSMiddleware,
@@ -158,16 +160,13 @@ def start_server(http_address: str, port: int):
                        allow_headers=["*"])
     @app.post("/cal")
     def cal(arg_dict: dict):
-        print(f'arg_dict is {arg_dict}')
+        print(f'NPS_Invest_Opt_Server收到请求，请求参数为: \n{arg_dict}')
 
-        calulate(arg_dict)
+        print(f'开始计算...')
+        rtn_table = calulate(arg_dict)
+        print(f'计算完成.')
 
-        response = {
-            'status':'normal',
-            'cancel':False,
-            'complete':True,
-            'send':arg_dict,
-        }
+        response = rtn_table
         return response
 
     print(f'API服务器已启动, url: {http_address}:{port} ...')
@@ -176,7 +175,7 @@ def start_server(http_address: str, port: int):
 def main():
     parser = argparse.ArgumentParser(description=f'API Service for NPS_Invest_Opt_Server.')
     parser.add_argument('--host', '-H', help='host to listen', default='0.0.0.0')
-    parser.add_argument('--port', '-P', help='port of this service', default=8002)
+    parser.add_argument('--port', '-P', help='port of this service', default=18001)
     args = parser.parse_args()
 
     start_server(args.host, int(args.port))
