@@ -2797,7 +2797,7 @@ class Sys(Sys_Base):
         return rtn_table
 
     # ===================生成计算报告、对应的docx文档===================
-    def _create_report(self, in_tables=0):
+    def _create_report(self, in_tables=0, in_url='http://localhost:18001'):
         t_fnames = self._pic_file_name_list     # 所有输出的图片名称
         t_docx_filename = "投资优化"
         t_content = [
@@ -2819,7 +2819,8 @@ class Sys(Sys_Base):
         w = Word(
             in_filename=t_docx_filename,
             in_id=self._remote_user_open_id,
-            in_domain_name="https://www.poweryourlife.cn"
+            in_domain_name=in_url,
+            # in_domain_name="https://www.poweryourlife.cn",
         )
         # sec = w.section_break(in_start_type=WD_SECTION_START.NEW_PAGE, in_rotate=False, in_is_linked_to_previous=False)
         w.add_page_number(in_sec=w.get_current_section(), in_show_total=False)
@@ -2882,8 +2883,6 @@ class Sys(Sys_Base):
         w.heading("1、初步结论", 2).para(t_content[11])
         w.heading("2、下一步工作建议", 2).para(t_content[12])
 
-
-
         #存盘
         w.save()
 
@@ -2896,6 +2895,8 @@ class Sys(Sys_Base):
         global g_NPV_Work
 
         print("============== npv:{} ============".format(g_NPV_Work))
+
+        return w.docx_filename
 
     # def free_model_mem(self):
     #     pass

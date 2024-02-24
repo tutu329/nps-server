@@ -1,6 +1,7 @@
 import uvicorn
 import argparse
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 # from sse_starlette.sse import ServerSentEvent, EventSourceResponse
 
@@ -40,8 +41,12 @@ def calulate(in_paras):
     t_simu_hours = 8760 * t_simu_years
 
     # =========================节点0=========================
+    import datetime
+    remote_user_id = 'tmpusr'
+    now_string = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
     t_sys = Sys(
         in_name_id='nps_project_0',
+        in_remote_user_open_id=f'{remote_user_id}_{now_string}',  # 输出的word文件名后缀，如：投资优化_openid(tmpusr_2024-02-24-13-09-58).docx中的'tmpusr_2024-02-24-13-09-58'
         in_dpi=64,
         in_share_y=True,
         in_simu_hours=t_simu_hours,
@@ -149,7 +154,22 @@ def calulate(in_paras):
 
     t_sys.do_optimize()
 
-    return t_sys._get_table_for_report_output()
+    result_status = t_sys.get_result_dict()
+    results = {
+        'has_solution' : False,
+        'fail_reason' : '',
+        'report_table' : None,
+        'report_url' : '',
+    }
+    if result_status['has_solution']==True:
+        results['has_solution'] = True
+        results['report_table'] = t_sys._get_table_for_report_output()
+        results['report_url'] = t_sys._report_file_url
+    else:
+        results['has_solution'] = False
+        results['fail_reason'] = '计算结果无解或者未收敛, 请检查设备参数("规模是否优化"、"W的单位造价"、"Wh的单位造价"等)和系统参数("仿真时长"、"最大负荷"、"年用电量"、"上网电量最大比例"、"下送电量最大比例"等)是否合理.'
+
+    return results
 
 def start_server(http_address: str, port: int):
     app = FastAPI()
@@ -169,7 +189,9 @@ def start_server(http_address: str, port: int):
         response = rtn_table
         return response
 
+    app.mount("/static", StaticFiles(directory="c:/server/nps-server/static"), name="static")
     print(f'API服务器已启动, url: {http_address}:{port} ...')
+    print(f'static文件夹已绑定, url: {http_address}:{port}/static/')
     uvicorn.run(app=app, host=http_address, port=port, workers=1)
 
 def main():
