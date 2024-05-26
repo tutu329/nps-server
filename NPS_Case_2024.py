@@ -471,9 +471,9 @@ class NPS_Case():
         # t_simu_hours = 1
         # t_simu_hours = 24
         # t_simu_hours = 720
-        # t_simu_hours = 24*365
+        t_simu_hours = 24*365
         # t_simu_hours = 24*365*2
-        t_simu_hours = 24*365*10
+        # t_simu_hours = 24*365*10
 
         # 不收敛
         # t_simu_hours = 24*365*15
@@ -504,7 +504,8 @@ class NPS_Case():
         # t_sys.print_objfunc = True
 
         # ============负荷============
-        file_path = 'D:/server/server-xls/data_analysis_multi.xlsx'
+        file_path = 'c:/server/server-xls/data_analysis_multi.xlsx'
+        # file_path = 'D:/server/server-xls/data_analysis_multi.xlsx'
         t_file = XLS_File(file_path, in_cols=[0,1,2], in_row_num=8761)
         # t_file = XLS_File('static/xls/data_analysis_multi.xlsx', in_cols=[0,1,2], in_row_num=8761)
         t_load1 = Load(in_sys=t_sys, in_name_id="elec load", in_p_nom=max_load_p) # kW
@@ -650,5 +651,41 @@ def main():
     nps = NPS_Case()
     nps.case3(in_called=True, in_path='')
 
+def api_server_test():
+    # 可以在jupyter中测试
+    try:
+        import requests
+        from requests.exceptions import RequestException
+        req = {
+            'rate':0.08,
+
+            'pv_nom0':0,
+            'pv_cost':3.5,
+            'pv_optimize':True,
+
+            'wind_nom0':0,
+            'wind_cost':3.5,
+            'wind_optimize':True,
+
+            'storage_w_cost':0.12,
+            'storage_wh_cost':1.38*0.6,
+
+            'up_flow_max_proportion':0.2,
+            'down_flow_max_proportion':0.1,
+
+            'load_max': 800*1000,
+            'load_electricity': 800*1000*6400,
+
+            'simu_years': 10,
+        }
+        response = requests.post(url='http://localhost:8002/cal/', json=req)
+        # response = requests.post(url='http://116.62.63.204:8002/cal/', json=req)
+        response.raise_for_status() # 如果不在200-400，发出一个异常
+        dict = response.json()
+        print(f'api_server_test dict is : {dict}')
+    except RequestException as e:
+        print(f'请求API服务器出错：{e}')
+
 if __name__ == "__main__" :
-    main()
+    # main()
+    api_server_test()

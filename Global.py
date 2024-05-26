@@ -20,7 +20,7 @@ def init():  # 初始化
 
     # 设置全局path
     if platform.system()=="Windows" :
-        _dict["path"]= "D:/server/nps-server/"
+        _dict["path"]= "C:/server/nps-server/"
     else:
         _dict["path"] = ""
 
