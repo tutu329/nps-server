@@ -676,9 +676,9 @@ def api_server_test():
             'load_max': 800*1000,
             'load_electricity': 800*1000*6400,
 
-            'simu_years': 10,
+            'simu_years': 1,
         }
-        response = requests.post(url='http://localhost:8002/cal/', json=req)
+        response = requests.post(url='http://localhost:18001/cal/', json=req)
         # response = requests.post(url='http://116.62.63.204:8002/cal/', json=req)
         response.raise_for_status() # 如果不在200-400，发出一个异常
         dict = response.json()

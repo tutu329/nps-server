@@ -64,7 +64,7 @@ def calulate(in_paras):
     # t_sys.print_objfunc = True
 
     # ============负荷============
-    file_path = 'c:/server/server-xls/data_analysis_multi.xlsx'
+    file_path = 'd:/server/server-xls/data_analysis_multi.xlsx'
     t_file = XLS_File(file_path, in_cols=[0, 1, 2], in_row_num=8761)
     # t_file = XLS_File('static/xls/data_analysis_multi.xlsx', in_cols=[0,1,2], in_row_num=8761)
     t_load1 = Load(in_sys=t_sys, in_name_id="elec load", in_p_nom=max_load_p)  # kW
@@ -189,7 +189,7 @@ def start_server(http_address: str, port: int):
         response = rtn_table
         return response
 
-    app.mount("/static", StaticFiles(directory="c:/server/nps-server/static"), name="static")
+    app.mount("/static", StaticFiles(directory="d:/server/nps-server/static"), name="static")
     print(f'API服务器已启动, url: {http_address}:{port} ...')
     print(f'static文件夹已绑定, url: {http_address}:{port}/static/')
     uvicorn.run(app=app, host=http_address, port=port, workers=1)
